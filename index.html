@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e8eee4">
+<meta name="description" content="Your personal Traditional Chinese and Taiwan MBA scholarship learning dashboard.">
+<title>TOFCL Learning</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#f7f5ef;--paper:#fffdf8;--ink:#26352e;--muted:#778078;--sage:#dfe8dc;--sage2:#b9cbb5;--blue:#dce7ef;--pink:#f3e0e2;--line:#e7e4da;--accent:#52745a;--shadow:0 12px 34px #33442b0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:10px 14px;background:var(--accent);color:white;font-weight:650}button.secondary{background:#edf0e9;color:var(--ink);border:1px solid var(--line)}button.ghost{background:transparent;color:var(--accent);padding:5px 8px}
+header{max-width:1200px;margin:auto;padding:22px 22px 10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}.logo{height:44px;width:44px;border-radius:15px;background:var(--sage);display:grid;place-items:center;font-size:22px}.brand h1{font-size:20px;margin:0;letter-spacing:-.5px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.header-actions{display:flex;gap:8px}
+.layout{max-width:1200px;margin:auto;padding:12px 22px 40px;display:grid;grid-template-columns:220px 1fr;gap:22px}
+nav{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:12px;height:max-content;position:sticky;top:12px;box-shadow:var(--shadow)}
+nav button{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:transparent;color:var(--muted);margin:3px 0;font-weight:600}nav button.active,nav button:hover{background:var(--sage);color:var(--ink)}
+.nav-label{font-size:10px;letter-spacing:1.3px;color:#92988e;margin:14px 10px 5px}
+main{min-width:0}.page{display:none}.page.active{display:block}.eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:1.5px;color:var(--accent);font-weight:750}
+h2{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:5px 0 6px}h3{font-size:17px;margin:0 0 12px}p{margin:5px 0}.muted{color:var(--muted)}.small{font-size:12px}.grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow);min-width:0}.hero{background:linear-gradient(120deg,#e5ede0,#f5e8e6);border:0;padding:25px}.hero-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.pill{display:inline-block;padding:5px 9px;border-radius:99px;background:#ffffffa8;font-size:11px;color:#4f6953;font-weight:750}
+.hanzi{font-size:clamp(29px,5vw,42px);font-weight:750;letter-spacing:2px;margin:12px 0}.pinyin{font-size:17px;color:#637568}.translation{font-size:15px;margin-top:5px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px}.stat strong{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fffefb;color:var(--ink);outline-color:var(--sage2)}label{display:block;font-size:12px;font-weight:700;margin:10px 0 5px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.list{display:flex;flex-direction:column;gap:8px}.word{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.word-main{min-width:0}.word-hanzi{font-size:21px;font-weight:750}.word-actions{display:flex;gap:5px;flex-shrink:0}.tag{font-size:10px;background:var(--blue);padding:3px 7px;border-radius:7px;color:#415765}.progress{height:8px;background:#e9e9e0;border-radius:9px;overflow:hidden}.progress span{height:100%;display:block;background:var(--accent);width:0%}.checkrow{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.checkrow input{width:auto;margin-top:5px;accent-color:var(--accent)}.checkrow label{font-size:14px;font-weight:500;margin:0}.checkrow small{display:block;color:var(--muted);margin-top:3px}
+footer{max-width:1200px;margin:0 auto;padding:0 22px 25px;color:var(--muted);font-size:11px}
+.notice{padding:12px 14px;border-radius:13px;background:#f7edda;font-size:12px;color:#6c5830;margin-top:12px}.empty{padding:22px;text-align:center;color:var(--muted)}
+.mobile-nav{display:none}.sentence-date{font-size:12px;color:var(--muted)}.inline{display:flex;gap:8px;align-items:center}.inline input{flex:1}.section-gap{margin-top:16px}
+@media(max-width:760px){header{padding:16px 15px 8px}.layout{display:block;padding:10px 15px 95px}nav{display:none}.header-actions button{padding:9px 10px;font-size:12px}.brand h1{font-size:18px}.grid.two,.grid.three{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:18px}.card{padding:16px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fffdf8f5;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px max(6px,env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));justify-content:space-around;z-index:10}.mobile-nav button{background:transparent;color:var(--muted);padding:7px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;min-width:0}.mobile-nav button.active{color:var(--accent);background:var(--sage)}.mobile-nav .nav-icon{font-size:17px}.formrow{grid-template-columns:1fr}.hero{padding:19px}.hanzi{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">文</div><div><h1>TOFCL Learning</h1><p>Your Mandarin journey to Taiwan</p></div></div>
+ <div class="header-actions"><button class="secondary" id="installBtn" hidden>Install app</button><button class="secondary" id="exportBtn">Export data</button></div>
+</header>
+<div class="layout">
+<nav id="sideNav">
+ <div class="nav-label">LEARN</div>
+ <button class="active" data-page="home">✦ <span>Dashboard</span></button>
+ <button data-page="vocab">字 <span>Vocabulary</span></button>
+ <button data-page="saved">♡ <span>Saved words</span></button>
+ <div class="nav-label">YOUR FUTURE</div>
+ <button data-page="roadmap">↗ <span>MBA Taiwan roadmap</span></button>
+ <button data-page="budget">＄ <span>Savings planner</span></button>
+ <div class="nav-label">PRACTICE</div>
+ <button data-page="practice">▤ <span>Quick practice</span></button>
+</nav>
+<main>
+<section class="page active" id="page-home">
+ <div class="eyebrow" id="todayLabel">YOUR DAILY PRACTICE</div><h2>A little Mandarin, every day.</h2><p class="muted">Small steps today. A bigger future in Taiwan.</p>
+ <div class="card hero section-gap">
+  <div class="hero-top"><div><span class="pill">SENTENCE OF THE DAY</span><div class="sentence-date" id="sentenceDate"></div></div><span style="font-size:26px">☁</span></div>
+  <div class="hanzi" id="dailyHanzi">慢慢來，比較快。</div><div class="pinyin" id="dailyPinyin">Màn màn lái, bǐjiào kuài.</div><div class="translation" id="dailyEnglish">Take your time; going slowly can get you there faster.</div>
+  <div class="actions"><button id="dailyAudio">▶ Listen (zh-TW)</button><button class="secondary" id="dailySave">♡ Save sentence words</button><button class="secondary" id="dailyNext">↻ Another sentence</button></div>
+  <div style="border-top:1px solid #d6ded1;margin-top:18px;padding-top:14px"><div class="eyebrow">WORD NOTES</div><p id="dailyNote" class="small">慢慢 màn màn — slowly · 比較 bǐjiào — comparatively / rather</p></div>
+ </div>
+ <div class="stats section-gap"><div class="stat"><strong id="wordCount">0</strong><span>Saved words</span></div><div class="stat"><strong id="streakCount">0</strong><span>Study days logged</span></div><div class="stat"><strong id="taskCount">0%</strong><span>Roadmap progress</span></div></div>
+ <div class="grid two section-gap">
+  <div class="card"><h3>Today's 10-minute plan</h3><div class="checkrow"><input type="checkbox" id="taskListen"><label for="taskListen">Listen and repeat the daily sentence<small>Play audio twice, then speak along.</small></label></div><div class="checkrow"><input type="checkbox" id="taskWords"><label for="taskWords">Review 5 vocabulary words<small>Recall the meaning before revealing it.</small></label></div><div class="checkrow"><input type="checkbox" id="taskWrite"><label for="taskWrite">Write 3 Traditional Chinese characters<small>Focus on stroke order and balance.</small></label></div><button class="secondary section-gap" id="logStudy">Log today's study</button></div>
+  <div class="card"><h3>Continue your journey</h3><p class="muted small">Keep your learning and MBA application plans in one place.</p><div class="list section-gap"><button class="secondary" data-goto="vocab">＋ Add vocabulary</button><button class="secondary" data-goto="practice">▤ Quick practice</button><button class="secondary" data-goto="roadmap">↗ View scholarship checklist</button></div><div class="notice">Audio uses your device's available Mandarin voice. Voice availability differs by browser and device.</div></div>
+ </div>
+</section>
+<section class="page" id="page-vocab">
+ <div class="eyebrow">BUILD YOUR WORD BANK</div><h2>Vocabulary</h2><p class="muted">Traditional Chinese · Pinyin · English</p>
+ <div class="card section-gap"><h3>Add a word</h3><div class="formrow"><div><label for="newHanzi">Traditional Chinese (繁體字)</label><input id="newHanzi" placeholder="例如：學習" maxlength="40"></div><div><label for="newPinyin">Pinyin with tones</label><input id="newPinyin" placeholder="xué xí" maxlength="80"></div></div><label for="newMeaning">English meaning</label><input id="newMeaning" placeholder="to study; to learn" maxlength="140"><label for="newExample">Example sentence (optional)</label><input id="newExample" placeholder="我每天學習中文。" maxlength="180"><div class="actions"><button id="addWord">Add vocabulary</button><button class="secondary" id="seedWords">Add beginner starter set</button></div><p class="small muted">Your words are saved in this browser on this device.</p></div>
+ <div class="card section-gap"><div class="inline"><input id="searchWords" placeholder="Search Hanzi, pinyin, or English…"><select id="wordFilter" style="max-width:145px"><option value="all">All words</option><option value="learning">Learning</option><option value="mastered">Mastered</option></select></div><div class="list section-gap" id="vocabList"></div></div>
+</section>
+<section class="page" id="page-saved">
+ <div class="eyebrow">YOUR PERSONAL COLLECTION</div><h2>Saved words</h2><p class="muted">Words and sentences you want to remember.</p><div class="card section-gap"><div class="list" id="savedList"></div></div>
+</section>
+<section class="page" id="page-practice">
+ <div class="eyebrow">ACTIVE RECALL</div><h2>Quick practice</h2><p class="muted">A small practice session using your vocabulary.</p>
+ <div class="card section-gap" id="practiceCard"><div class="pill">FLASHCARD</div><div class="hanzi" id="practiceHanzi">你好</div><div id="practicePinyin" class="pinyin" hidden>nǐ hǎo</div><div id="practiceMeaning" hidden>Hello</div><div class="actions"><button id="revealCard">Reveal answer</button><button class="secondary" id="practiceAudio">▶ Audio</button></div><div class="actions" id="rateButtons" hidden><button id="gotIt">✓ I knew it</button><button class="secondary" id="missedIt">↻ Review again</button></div><p class="small muted" id="practiceProgress"></p><div class="progress"><span id="practiceBar"></span></div></div>
+ <div class="grid two section-gap"><div class="card"><h3>Fill in the blank</h3><p id="blankQuestion">我每天＿＿中文。 (I study Chinese every day.)</p><input id="blankAnswer" placeholder="Type the missing word"><button class="section-gap" id="checkBlank">Check answer</button><p id="blankFeedback" class="small"></p></div><div class="card"><h3>Make a sentence</h3><p class="muted small">Choose a word and write a simple sentence with it.</p><select id="sentenceWord"></select><textarea id="sentenceInput" rows="3" placeholder="Write a Traditional Chinese sentence…"></textarea><button class="section-gap" id="saveSentence">Save my sentence</button><p id="sentenceFeedback" class="small muted"></p></div></div>
+ <div class="notice">This is beginner practice, not an official TOCFL mock test. Character handwriting sheets and stroke-order animation can be added in a later version.</div>
+</section>
+<section class="page" id="page-roadmap">
+ <div class="eyebrow">YOUR NEXT CHAPTER</div><h2>Taiwan MBA roadmap</h2><p class="muted">Target intake: 2027 · International applicant · Starting from beginner Mandarin</p>
+ <div class="notice"><b>Timeline reality check:</b> October 2026 is already close to many 2027 application cycles. Some Fall 2027 deadlines may fall in late 2026 or early 2027, while scholarship deadlines can be earlier. Check each official program immediately; keep Fall 2028 as a backup if tests or documents cannot be ready in time.</div>
+ <div class="card section-gap"><div class="inline" style="justify-content:space-between"><h3>Application checklist</h3><span class="tag" id="roadmapPct">0% complete</span></div><div class="progress"><span id="roadmapBar"></span></div><div id="roadmapList" class="section-gap"></div></div>
+ <div class="grid two section-gap">
+  <div class="card"><h3>Universities to research</h3><p class="small muted">Starting shortlist, not a ranking. Verify MBA availability, language, eligibility, tuition and deadlines.</p>
+   <p><b>National Taiwan University (NTU)</b><br><a href="https://admissions.ntu.edu.tw/" target="_blank" rel="noopener">International admissions ↗</a></p>
+   <p><b>National Chengchi University (NCCU)</b><br><a href="https://www.nccu.edu.tw/" target="_blank" rel="noopener">Official website ↗</a></p>
+   <p><b>National Tsing Hua University (NTHU)</b><br><a href="https://www.nthu.edu.tw/" target="_blank" rel="noopener">Official website ↗</a></p>
+   <p><b>National Taiwan University of Science and Technology (Taiwan Tech)</b><br><a href="https://www.admission.ntust.edu.tw/" target="_blank" rel="noopener">Admissions ↗</a></p>
+   <p class="small muted">Confirm the exact MBA / management program and its language of instruction on each school's official site.</p>
+  </div>
+  <div class="card"><h3>Scholarship starting points</h3>
+   <p><b>Taiwan Scholarship (MOE)</b><br><a href="https://www.roc-taiwan.org/" target="_blank" rel="noopener">Find the Taiwan representative office for Indonesia ↗</a></p>
+   <p><b>University scholarships</b><br>Search for tuition waivers, monthly stipends, graduate scholarships and assistantships.</p>
+   <p><b>Other funding</b><br>Check eligibility and coverage by nationality, degree and intake; scholarship applications may be separate from university admission.</p>
+   <div class="notice">Never assume admission automatically includes a scholarship. Keep an unfunded-cost plan and a backup intake.</div>
+  </div>
+ </div>
+ <div class="card section-gap"><h3>Language plan</h3><div class="checkrow"><input type="checkbox" id="lang1"><label for="lang1">Confirm the MBA's language of instruction<small>English-taught programs may require IELTS/TOEFL rather than TOCFL.</small></label></div><div class="checkrow"><input type="checkbox" id="lang2"><label for="lang2">Set the correct test target<small>Check the exact program requirement before paying for an exam.</small></label></div><div class="checkrow"><input type="checkbox" id="lang3"><label for="lang3">Study Traditional Chinese 20–30 minutes most days<small>Useful for daily life even if your MBA is taught in English.</small></label></div></div>
+</section>
+<section class="page" id="page-budget">
+ <div class="eyebrow">PLAN WITH A BUFFER</div><h2>Savings planner</h2><p class="muted">Create a personal cash target for applications and moving to Taiwan.</p>
+ <div class="card section-gap"><div class="formrow"><div><label for="currentSavings">Current savings (IDR)</label><input type="number" id="currentSavings" min="0" value="500000"></div><div><label for="targetSavings">Savings target (IDR)</label><input type="number" id="targetSavings" min="0" value="30000000"></div><div><label for="monthlySavings">Monthly saving (IDR)</label><input type="number" id="monthlySavings" min="0" value="1000000"></div><div><label for="targetMonths">Months to save</label><input type="number" id="targetMonths" min="1" value="12"></div></div><div class="grid two section-gap"><div class="stat"><span>Projected savings</span><strong id="projected">Rp12.500.000</strong></div><div class="stat"><span>Monthly amount needed</span><strong id="needed">Rp2.458.333</strong></div></div><div class="progress section-gap"><span id="savingsBar"></span></div><p id="savingsFeedback" class="small muted"></p></div>
+ <div class="grid two section-gap"><div class="card"><h3>Budget categories</h3><div class="checkrow"><input type="checkbox" id="costTest"><label for="costTest">Language test(s)<small>TOCFL and/or IELTS/TOEFL if required.</small></label></div><div class="checkrow"><input type="checkbox" id="costDocs"><label for="costDocs">Documents and applications<small>Translations, certifications and application fees.</small></label></div><div class="checkrow"><input type="checkbox" id="costFlight"><label for="costFlight">Travel and immigration costs<small>Flight, visa/residence formalities and insurance as applicable.</small></label></div><div class="checkrow"><input type="checkbox" id="costStart"><label for="costStart">Initial living costs<small>Deposit, food, transport and first-month expenses.</small></label></div><div class="checkrow"><input type="checkbox" id="costBuffer"><label for="costBuffer">Emergency buffer<small>Keep funds for delays and expenses not covered by funding.</small></label></div></div><div class="card"><h3>Funding notes</h3><p class="small">For planning only: scholarship coverage varies by scheme and year. Confirm current official rules before relying on tuition waivers or stipends.</p><label for="fundingNotes">Notes / confirmed amounts</label><textarea id="fundingNotes" rows="6" placeholder="Scholarship name, coverage, deadline, link…"></textarea><button id="saveFundingNotes" class="section-gap">Save notes</button><p id="fundingSaved" class="small muted"></p></div></div>
+ <div class="notice">The savings target is an editable placeholder, not an official estimate of Taiwan study costs. Replace it with a budget based on your actual program, city, funding offer and personal circumstances.</div>
+</section>
+</main>
+</div>
+<div class="mobile-nav" id="mobileNav"><button class="active" data-page="home"><span class="nav-icon">✦</span>Home</button><button data-page="vocab"><span class="nav-icon">字</span>Vocab</button><button data-page="saved"><span class="nav-icon">♡</span>Saved</button><button data-page="practice"><span class="nav-icon">▤</span>Practice</button><button data-page="roadmap"><span class="nav-icon">↗</span>Roadmap</button></div>
+<footer>TOFCL Learning · Personal study tool · Not affiliated with the official TOCFL test or any university. Your data stays in this browser unless you export it.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const KEY='tofcl-learning-v1';
+const today=()=>new Date().toISOString().slice(0,10);
+const defaultData={
+ words:[
+ {id:1,hanzi:'你好',pinyin:'nǐ hǎo',meaning:'hello; hi',example:'你好！很高興認識你。',status:'learning',saved:true},
+ {id:2,hanzi:'學習',pinyin:'xué xí',meaning:'to study; to learn',example:'我每天學習中文。',status:'learning',saved:false},
+ {id:3,hanzi:'中文',pinyin:'zhōng wén',meaning:'Chinese language',example:'我想學中文。',status:'learning',saved:true},
+ {id:4,hanzi:'謝謝',pinyin:'xiè xie',meaning:'thank you',example:'謝謝你的幫忙。',status:'mastered',saved:false},
+ {id:5,hanzi:'喜歡',pinyin:'xǐ huān',meaning:'to like; to enjoy',example:'我喜歡看書。',status:'learning',saved:false},
+ {id:6,hanzi:'今天',pinyin:'jīn tiān',meaning:'today',example:'今天我很忙。',status:'learning',saved:false},
+ {id:7,hanzi:'朋友',pinyin:'péng you',meaning:'friend',example:'她是我的朋友。',status:'learning',saved:false},
+ {id:8,hanzi:'工作',pinyin:'gōng zuò',meaning:'work; job',example:'我想找工作。',status:'learning',saved:false}
+ ],
+ sentenceIndex:0,loggedDays:[],dailyChecks:{},roadmap:{},langChecks:{},budgetChecks:{},savings:{current:500000,target:30000000,monthly:1000000,months:12},fundingNotes:'',customSentences:[]
+};
+let data;
+try{data={...defaultData,...JSON.parse(localStorage.getItem(KEY)||'{}')};data.words=data.words||defaultData.words;data.loggedDays=data.loggedDays||[];data.dailyChecks=data.dailyChecks||{};data.roadmap=data.roadmap||{};data.langChecks=data.langChecks||{};data.budgetChecks=data.budgetChecks||{};data.savings=data.savings||defaultData.savings;}catch(e){data=structuredClone(defaultData)}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));renderAll()}
+const sentences=[
+ {hanzi:'慢慢來，比較快。',pinyin:'Màn màn lái, bǐjiào kuài.',english:'Take your time; going slowly can get you there faster.',note:'慢慢 màn màn — slowly · 比較 bǐjiào — comparatively / rather'},
+ {hanzi:'我每天都學一點中文。',pinyin:'Wǒ měi tiān dōu xué yì diǎn Zhōng wén.',english:'I learn a little Chinese every day.',note:'每天 měi tiān — every day · 一點 yì diǎn — a little'},
+ {hanzi:'今天也是新的開始。',pinyin:'Jīn tiān yě shì xīn de kāi shǐ.',english:'Today is also a new beginning.',note:'今天 jīn tiān — today · 開始 kāi shǐ — beginning'},
+ {hanzi:'一步一步，就會進步。',pinyin:'Yí bù yí bù, jiù huì jìn bù.',english:'Step by step, you will improve.',note:'一步一步 yí bù yí bù — step by step · 進步 jìn bù — improve'},
+ {hanzi:'我相信自己。',pinyin:'Wǒ xiāng xìn zì jǐ.',english:'I believe in myself.',note:'相信 xiāng xìn — believe · 自己 zì jǐ — oneself'}
+];
+let dailyOffset=0, practiceIndex=0, revealed=false, installPrompt=null;
+function currentSentence(){const n=Math.floor(Date.now()/86400000);return sentences[(n+dailyOffset)%sentences.length]}
+function speak(text){if(!('speechSynthesis'in window)){alert('Speech audio is not supported in this browser. Try Safari or Chrome with a Mandarin voice installed.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-TW';u.rate=.82;const voices=speechSynthesis.getVoices();const v=voices.find(x=>x.lang.toLowerCase()==='zh-tw')||voices.find(x=>x.lang.toLowerCase().startsWith('zh'));if(v)u.voice=v;speechSynthesis.speak(u)}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+page));document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});if(page==='practice')renderPractice()}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.goto)));
+function renderDaily(){const s=currentSentence();$('sentenceDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});$('dailyHanzi').textContent=s.hanzi;$('dailyPinyin').textContent=s.pinyin;$('dailyEnglish').textContent=s.english;$('dailyNote').textContent=s.note}
+$('dailyAudio').onclick=()=>speak(currentSentence().hanzi);
+$('dailyNext').onclick=()=>{dailyOffset++;renderDaily()};
+$('dailySave').onclick=()=>{const s=currentSentence();const exists=data.words.some(w=>w.hanzi===s.hanzi);if(!exists)data.words.push({id:Date.now(),hanzi:s.hanzi,pinyin:s.pinyin,meaning:s.english,example:'',status:'learning',saved:true});else data.words.find(w=>w.hanzi===s.hanzi).saved=true;save();alert('Sentence saved to your vocabulary collection.')};
+function renderVocab(){const q=$('searchWords').value.toLowerCase(),f=$('wordFilter').value;const words=data.words.filter(w=>(f==='all'||w.status===f)&&[w.hanzi,w.pinyin,w.meaning,w.example].join(' ').toLowerCase().includes(q));$('vocabList').innerHTML=words.length?words.map(w=>`<div class="word"><div class="word-main"><div><span class="word-hanzi">${esc(w.hanzi)}</span> <span class="tag">${esc(w.status)}</span></div><div class="pinyin" style="font-size:13px">${esc(w.pinyin)}</div><div>${esc(w.meaning)}</div>${w.example?`<div class="small muted">${esc(w.example)}</div>`:''}</div><div class="word-actions"><button class="secondary" data-audio="${w.id}" title="Listen">▶</button><button class="secondary" data-save="${w.id}" title="Save">${w.saved?'♥':'♡'}</button><button class="secondary" data-master="${w.id}" title="Toggle mastery">✓</button></div></div>`).join(''):'<div class="empty">No words found. Add a word above to begin.</div>';
+document.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>{const w=data.words.find(x=>x.id==b.dataset.audio);speak(w.hanzi)});document.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>{const w=data.words.find(x=>x.id==b.dataset.save);w.saved=!w.saved;save()});document.querySelectorAll('[data-master]').forEach(b=>b.onclick=()=>{const w=data.words.find(x=>x.id==b.dataset.master);w.status=w.status==='mastered'?'learning':'mastered';save()});renderSentenceSelect()}
+$('searchWords').addEventListener('input',renderVocab);$('wordFilter').addEventListener('change',renderVocab);
+$('addWord').onclick=()=>{const hanzi=$('newHanzi').value.trim(),pinyin=$('newPinyin').value.trim(),meaning=$('newMeaning').value.trim(),example=$('newExample').value.trim();if(!hanzi||!pinyin||!meaning){alert('Please add Hanzi, pinyin, and English meaning.');return}data.words.unshift({id:Date.now(),hanzi,pinyin,meaning,example,status:'learning',saved:false});$('newHanzi').value='';$('newPinyin').value='';$('newMeaning').value='';$('newExample').value='';save()};
+$('seedWords').onclick=()=>{const starter=[['早安','zǎo ān','good morning','早安！'],['再見','zài jiàn','goodbye','明天再見。'],['水','shuǐ','water','我想喝水。'],['吃','chī','to eat','我們一起吃飯。'],['喝','hē','to drink','你想喝茶嗎？'],['學校','xué xiào','school','我去學校。'],['時間','shí jiān','time','我沒有時間。'],['想','xiǎng','to want; to think','我想去台灣。']];let added=0;starter.forEach(a=>{if(!data.words.some(w=>w.hanzi===a[0])){data.words.push({id:Date.now()+Math.random(),hanzi:a[0],pinyin:a[1],meaning:a[2],example:a[3],status:'learning',saved:false});added++}});save();alert(added+' beginner words added.')};
+function renderSaved(){const words=data.words.filter(w=>w.saved);$('savedList').innerHTML=words.length?words.map(w=>`<div class="word"><div class="word-main"><div class="word-hanzi">${esc(w.hanzi)}</div><div class="pinyin" style="font-size:13px">${esc(w.pinyin)}</div><div>${esc(w.meaning)}</div>${w.example?`<div class="small muted">${esc(w.example)}</div>`:''}</div><div class="word-actions"><button class="secondary" data-saudio="${w.id}">▶</button><button class="secondary" data-unsave="${w.id}">Remove</button></div></div>`).join(''):'<div class="empty">Nothing saved yet. Tap ♡ beside a word in Vocabulary.</div>';document.querySelectorAll('[data-saudio]').forEach(b=>b.onclick=()=>speak(data.words.find(w=>w.id==b.dataset.saudio).hanzi));document.querySelectorAll('[data-unsave]').forEach(b=>b.onclick=()=>{data.words.find(w=>w.id==b.dataset.unsave).saved=false;save()})}
+function renderSentenceSelect(){$('sentenceWord').innerHTML=data.words.map(w=>`<option value="${w.id}">${esc(w.hanzi)} — ${esc(w.meaning)}</option>`).join('')}
+function renderPractice(){const words=data.words;if(!words.length)return;practiceIndex=practiceIndex%words.length;const w=words[practiceIndex];$('practiceHanzi').textContent=w.hanzi;$('practicePinyin').textContent=w.pinyin;$('practiceMeaning').textContent=w.meaning;$('practicePinyin').hidden=!revealed;$('practiceMeaning').hidden=!revealed;$('revealCard').hidden=revealed;$('rateButtons').hidden=!revealed;$('practiceProgress').textContent=`Card ${practiceIndex+1} of ${words.length}`;$('practiceBar').style.width=((practiceIndex+1)/words.length*100)+'%';}
+$('revealCard').onclick=()=>{revealed=true;renderPractice()};$('practiceAudio').onclick=()=>speak(data.words[practiceIndex%data.words.length].hanzi);
+$('gotIt').onclick=()=>{practiceIndex=(practiceIndex+1)%data.words.length;revealed=false;renderPractice()};$('missedIt').onclick=()=>{const w=data.words.splice(practiceIndex%data.words.length,1)[0];data.words.push(w);practiceIndex=0;revealed=false;save();renderPractice()};
+$('checkBlank').onclick=()=>{const answer=$('blankAnswer').value.trim();const ok=['學習','学习'].includes(answer);$('blankFeedback').textContent=ok?'Correct! 學習 (xué xí) means “to study”.':'Not quite. A good answer is 學習 (xué xí).';$('blankFeedback').style.color=ok?'#52745a':'#99613f'};
+$('saveSentence').onclick=()=>{const w=data.words.find(x=>String(x.id)===$('sentenceWord').value);const sentence=$('sentenceInput').value.trim();if(!sentence){$('sentenceFeedback').textContent='Write a sentence first.';return}data.customSentences=data.customSentences||[];data.customSentences.push({word:w?.hanzi||'',sentence,date:today()});save();$('sentenceFeedback').textContent='Saved locally. Keep practising!';$('sentenceInput').value=''};
+const roadmapItems=[
+['programs','Shortlist 3–5 MBA / management programs','Check MBA availability, teaching language, eligibility and curriculum.'],
+['deadline','Verify Fall 2027 deadlines now','University and scholarship deadlines may be different. Record official URLs and dates.'],
+['passport','Check passport validity','Confirm validity requirements and renewal lead time.'],
+['transcript','Prepare transcript and graduation documents','Check whether certified English/Chinese translations are required.'],
+['english','Check English test requirements','Book IELTS/TOEFL only after confirming accepted tests and minimum scores.'],
+['mandarin','Set Mandarin goal','TOCFL may be useful, but an English-taught MBA may not require it.'],
+['sop','Draft CV, statement of purpose and study plan','Connect communication background to your MBA goals and career plan.'],
+['letters','Request recommendation letters','Ask referees early and provide your CV and goals.'],
+['funding','Apply for scholarships separately where required','Check Taiwan Scholarship and each university scholarship rules.'],
+['budget','Build an initial-arrival budget','Include uncovered tuition, travel, deposits and an emergency buffer.'],
+['submit','Submit applications and track portals','Keep confirmation emails and copies of every document.'],
+['backup','Create a Fall 2028 backup plan','Use this if deadlines, tests or documents make 2027 unrealistic.']
+];
+function renderRoadmap(){const done=roadmapItems.filter(i=>data.roadmap[i[0]]).length,p=Math.round(done/roadmapItems.length*100);$('roadmapPct').textContent=p+'% complete';$('roadmapBar').style.width=p+'%';$('roadmapList').innerHTML=roadmapItems.map(i=>`<div class="checkrow"><input type="checkbox" data-road="${i[0]}" id="road-${i[0]}" ${data.roadmap[i[0]]?'checked':''}><label for="road-${i[0]}">${esc(i[1])}<small>${esc(i[2])}</small></label></div>`).join('');document.querySelectorAll('[data-road]').forEach(c=>c.onchange=()=>{data.roadmap[c.dataset.road]=c.checked;save()});['lang1','lang2','lang3'].forEach(id=>{$(id).checked=!!data.langChecks[id];$(id).onchange=()=>{data.langChecks[id]=$(id).checked;save()}})}
+function money(n){return Number(n||0).toLocaleString('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0})}
+function renderBudget(){['currentSavings','targetSavings','monthlySavings','targetMonths'].forEach((id,i)=>$(id).value=[data.savings.current,data.savings.target,data.savings.monthly,data.savings.months][i]);const s=data.savings,projected=Number(s.current)+Number(s.monthly)*Number(s.months),needed=Math.max(0,(Number(s.target)-Number(s.current))/Math.max(1,Number(s.months)));$('projected').textContent=money(projected);$('needed').textContent=money(needed);$('savingsBar').style.width=Math.min(100,s.target?projected/s.target*100:100)+'%';$('savingsFeedback').textContent=projected>=s.target?'At this saving rate, your target is reached in the selected period.':'Projected shortfall: '+money(s.target-projected)+'. Increase monthly savings, lower the target, or extend the timeline.';['costTest','costDocs','costFlight','costStart','costBuffer'].forEach(id=>{$(id).checked=!!data.budgetChecks[id];$(id).onchange=()=>{data.budgetChecks[id]=$(id).checked;persistOnly()}});$('fundingNotes').value=data.fundingNotes||''}
+function persistOnly(){localStorage.setItem(KEY,JSON.stringify(data))}
+['currentSavings','targetSavings','monthlySavings','targetMonths'].forEach((id,i)=>$(id).addEventListener('input',()=>{data.savings=[...['currentSavings','targetSavings','monthlySavings','targetMonths'].map(x=>Number($(x).value)||0)].reduce((o,v,j)=>(o[['current','target','monthly','months'][j]]=v,o),{});persistOnly();renderBudget()}));
+$('saveFundingNotes').onclick=()=>{data.fundingNotes=$('fundingNotes').value;persistOnly();$('fundingSaved').textContent='Notes saved in this browser.'};
+function renderHome(){ $('wordCount').textContent=data.words.filter(w=>w.saved).length;$('streakCount').textContent=data.loggedDays.length;const total=roadmapItems.length,done=roadmapItems.filter(i=>data.roadmap[i[0]]).length;$('taskCount').textContent=Math.round(done/total*100)+'%';['taskListen','taskWords','taskWrite'].forEach(id=>{$(id).checked=!!(data.dailyChecks[today()]||{})[id];$(id).onchange=()=>{data.dailyChecks[today()]={...(data.dailyChecks[today()]||{}),[id]:$(id).checked};persistOnly()}})}
+$('logStudy').onclick=()=>{if(!data.loggedDays.includes(today()))data.loggedDays.push(today());save();alert('Today’s study logged. Keep going!')};
+function renderAll(){renderDaily();renderVocab();renderSaved();renderPractice();renderRoadmap();renderBudget();renderHome()}
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='tofcl-learning-backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)};
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});$('installBtn').onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installBtn').hidden=true}else alert('On iPhone: open this site in Safari, tap Share, then Add to Home Screen. For reliable PWA installation, host it over HTTPS first.')};
+if('serviceWorker'in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+renderAll();
+</script>
+</body>
+</html>

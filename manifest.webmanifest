@@ -1,0 +1,10 @@
+{
+  "name": "TOFCL Learning",
+  "short_name": "TOFCL",
+  "description": "Personal Traditional Chinese learning and Taiwan MBA scholarship planner.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f5ef",
+  "theme_color": "#e8eee4",
+  "icons": []
+}
